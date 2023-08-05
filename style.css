@@ -1,0 +1,25 @@
+body {
+  background-color: gray;
+  
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 320px;
+}
+
+.element {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+}
+
+.filled {
+  background: blue;
+}
