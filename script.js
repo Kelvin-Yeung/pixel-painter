@@ -1,31 +1,43 @@
-const board = document.querySelector(".container");
-const changeSize = document.querySelector("button");
+const DEFAULT_SIZE = 16;
+const MIN_SIZE = 1;
+const MAX_SIZE = 50;
+const canvas = document.querySelector(".container");
+const sizeButton = document.querySelector("button");
+let drawing = false;
 
-function createGrid(size) {
+function createCanvas(size) {
+  if (size < MIN_SIZE || size > MAX_SIZE) {
+    alert("Please enter a size between 1 and 99.");
+    return;
+  }
+  canvas.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+  canvas.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   for (let i = 0; i < size * size; ++i) {
-    board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-    board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     const square = document.createElement("div");
-    square.classList.add("element");
-    board.appendChild(square);
-    board.addEventListener("mouseover", addFilled);
+    square.classList.add("pixel");
+    canvas.appendChild(square);
+    canvas.addEventListener("mouseover", paintCanvas);
   }
 }
 
-function removeGrid() {
-  while (board.firstChild) {
-    board.removeChild(board.firstChild);
+function destroyCanvas() {
+  while (canvas.firstChild) {
+    canvas.removeChild(canvas.firstChild);
   }
 }
 
-function addFilled(event) {
-  event.target.classList.add("filled");
+function paintCanvas(event) {
+  if (drawing) {
+    event.target.style.backgroundColor = "blue";
+  }
 }
 
-changeSize.addEventListener("click", () => {
-  let size = prompt("What size do you want the grid to be?", 16);
-  removeGrid()
-  createGrid(size);
+sizeButton.addEventListener("click", () => {
+  let size = prompt("What size do you want the grid to be?");
+  destroyCanvas()
+  createCanvas(size);
 });
 
-window.onload = createGrid(16);
+window.addEventListener("mousedown", () => {drawing = true;});
+window.addEventListener("mouseup", () => {drawing = false;});
+window.onload = createCanvas(DEFAULT_SIZE);
