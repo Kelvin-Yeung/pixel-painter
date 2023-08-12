@@ -1,6 +1,6 @@
-const DEFAULT_SIZE = 16;
 const MIN_SIZE = 1;
 const MAX_SIZE = 50;
+const DEFAULT_SIZE = 16;
 const canvas = document.querySelector(".container");
 const sizeButton = document.querySelector("button");
 let drawing = false;
