@@ -32,21 +32,53 @@ a {
 
 .content {
   display: flex;
-  justify-content: center;
+}
+
+.colours {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.darkshades {
+  display: grid;
+  grid-template-columns: repeat(4, 30px);
+  grid-template-rows: repeat(12, 30px);
+}
+
+.lightshades {
+  display: grid;
+  grid-template-columns: repeat(5, 30px);
+  grid-template-rows: repeat(12, 30px);
+}
+
+.colours button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.features {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .container {
+  flex-shrink: 0;
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);
   width: 500px;
   height: 500px;
+  margin: 25px;
   
 }
 
 .pixel {
   background-color: white;
-  border: solid;
+  
 }
 
 footer {
