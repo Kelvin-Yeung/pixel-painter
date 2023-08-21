@@ -39,6 +39,7 @@ a {
   align-items: center;
   justify-content: flex-end;
   flex: 1;
+  margin-right: 25px;
 }
 
 .darkshades {
@@ -62,7 +63,21 @@ a {
 .features {
   flex: 1;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 25px;
+}
+
+.features button {
+  border: 2.5px solid black;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 16px 8px;
+  /* transition: all .05s ease; */
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 8px black;
 }
 
 .container {
@@ -72,13 +87,10 @@ a {
   grid-template-rows: repeat(16, 1fr);
   width: 500px;
   height: 500px;
-  margin: 25px;
-  
 }
 
 .pixel {
   background-color: white;
-  
 }
 
 footer {

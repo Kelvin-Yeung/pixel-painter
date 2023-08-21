@@ -6,9 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="node_modules/dom-to-image/dist/dom-to-image.min.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
+    <audio class="bgmusic" loop>
+      <source src="playing-in-colour.mp3" type="audio/mpeg">
+      Your browser does not support the audio element
+    </audio>
     <header>
       <div class="branding">
         <img src="img/paintbrush.png" alt="Pixelated paintbrush and palette" height="50px">
@@ -27,10 +32,13 @@
         <div class="darkshades"></div>
         <div class="lightshades"></div>
       </div>
-      <div class="container" id="absolute"></div>
+      <div class="container"></div>
       <div class="features">
-        <button type="button" height="10px">Size</button>
-        <button type="button" height="10px">Mute</button>
+        <button type="button" id="grid">Grid</button>
+        <button type="button" id="music">Music</button>
+        <button type="button" id="save">Save</button>
+        <button type="button" id="clear">Clear</button>
+        <button type="button" id="size">Size</button>
       </div>
     </div>
     <footer>

@@ -1,24 +1,31 @@
 const MIN_SIZE = 1;
 const MAX_SIZE = 50;
-const DEFAULT_SIZE = 16;
+const DEFAULT_SIZE = 32;
 const canvas = document.querySelector(".container");
 const lightBtns = document.querySelector(".lightshades");
 const darkBtns = document.querySelector(".darkshades");
-const sizeButton = document.querySelector("button");
+
+// Right side buttons
+const gridBtn = document.querySelector("#grid");
+const musicBtn = document.querySelector("#music");
+const saveBtn = document.querySelector("#save");
+const clearBtn = document.querySelector("#clear");
+const sizeBtn = document.querySelector("#size");
+
 let drawing = false;
-let colour = "blue";
+let colour = "black";
 
 function createCanvas(size) {
   if (size < MIN_SIZE || size > MAX_SIZE) {
-    alert("Please enter a size between 1 and 99.");
+    alert("Please enter a size between 1 and 50.");
     return;
   }
   canvas.style.gridTemplateRows = `repeat(${size}, 1fr)`;
   canvas.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   for (let i = 0; i < size * size; ++i) {
-    const square = document.createElement("div");
-    square.classList.add("pixel");
-    canvas.appendChild(square);
+    const pixel = document.createElement("div");
+    pixel.classList.add("pixel");
+    canvas.appendChild(pixel);
     canvas.addEventListener("mousedown", paintCanvas);
     canvas.addEventListener("mouseover", paintCanvas);
   }
@@ -42,15 +49,12 @@ function createColourBtns() {
         colour = event.target.style.backgroundColor;
       });
       lightBtns.appendChild(btn);
-      console.log("Red: " + lightRed);
-      console.log("Blue: " + lightBlue);
-      console.log("Green: " + lightGreen);
     }
   }
 }
 
 function createColourBtns2() {
-  // Learn how to error handle in JS
+  // Learn how to error handle in JS and fix styling
   let rgbvals = [255, 255, 255, 128, 0, 0, 0, 0, 0, 128, 255, 255];
   for (let i = 0; i < 12; ++i) { 
     for (let j = 4; j > 0; --j) {
@@ -67,15 +71,9 @@ function createColourBtns2() {
         colour = event.target.style.backgroundColor;
       });
       darkBtns.appendChild(btn);
-      console.log("Red: " + red);
-      console.log("Blue: " + green);
-      console.log("Green: " + blue);
     }
   }
 }
-
-createColourBtns();
-createColourBtns2();
 
 function destroyCanvas() {
   while (canvas.firstChild) {
@@ -89,12 +87,46 @@ function paintCanvas(event) {
   }
 }
 
-sizeButton.addEventListener("click", () => {
+musicBtn.addEventListener("click", () => {
+  const audio = document.querySelector("audio");
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+});
+
+grid.addEventListener("click", () => {
+  for (const pixel of canvas.children) {
+    console.log(canvas);
+    if (pixel.style.border == "0.1px solid") {
+      pixel.style.border = "0";
+    } else {
+      pixel.style.border = "0.1px solid";
+    }
+  }
+});
+
+sizeBtn.addEventListener("click", () => {
   let size = prompt("What size do you want the grid to be?");
-  destroyCanvas()
+  destroyCanvas();
   createCanvas(size);
+});
+
+saveBtn.addEventListener("click", () => {
+  domtoimage.toJpeg(canvas).then((dataURL) => {
+    let link = document.createElement('a');
+    link.download = 'my-image-name.jpeg';
+    link.href = dataURL;
+    link.click();
+  })
+  .catch((error) => {
+    console.error("BAD", error);
+  });
 });
 
 window.addEventListener("mousedown", () => {drawing = true;});
 window.addEventListener("mouseup", () => {drawing = false;});
-window.onload = createCanvas(DEFAULT_SIZE);
+createCanvas(DEFAULT_SIZE);
+createColourBtns();
+createColourBtns2();
