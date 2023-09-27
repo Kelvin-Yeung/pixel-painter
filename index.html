@@ -4,26 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pixel Painter</title>
     <link rel="stylesheet" href="style.css">
     <script src="node_modules/dom-to-image/dist/dom-to-image.min.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
     <audio class="bgmusic" loop>
-      <source src="playing-in-colour.mp3" type="audio/mpeg">
+      <source src="media/playing-in-colour.mp3" type="audio/mpeg">
       Your browser does not support the audio element
     </audio>
     <header>
       <div class="branding">
-        <img src="img/paintbrush.png" alt="Pixelated paintbrush and palette" height="50px">
         Pixel Painter
+        <img src="media/paintbrush.png" alt="Pixelated paintbrush and palette" height="30px">
       </div>
       <div class="sections">
         <ul>
-          <li><a href="#">⭐ - Something</a></li>
-          <li><a href="#">🦸🏽‍♂️ - Feedback</a></li>
-          <li><a href="#">🖌️ - About Me</a></li>
+          <li><a href="#">About Page (To be implemented...)</a></li>
         </ul>
       </div>
     </header>
@@ -31,18 +29,25 @@
       <div class="colours">
         <div class="darkshades"></div>
         <div class="lightshades"></div>
+        <div class="grayshades"></div>
       </div>
       <div class="container"></div>
       <div class="features">
+        <p id="invisible">Dummy Text</p>
         <button type="button" id="grid">Grid</button>
         <button type="button" id="music">Music</button>
         <button type="button" id="save">Save</button>
         <button type="button" id="clear">Clear</button>
-        <button type="button" id="size">Size</button>
+        <div class="slidecontainer">
+          <p style="text-align: center;margin-bottom: 4px;">32x32</p>
+          <input type="range" min="1" max="100" value="32" class="slider" id="size">
+          <button type="button" id="apply">Apply</button>
+        </div>
+        <p id="fading">Canvas size changed</p>
       </div>
     </div>
     <footer>
-      Testing!
+      Made w/ ❤️ + Vanilla JS by Kelvin Yeung
     </footer>
   </body>
 </html>
